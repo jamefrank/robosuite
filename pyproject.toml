@@ -1,15 +1,17 @@
-[tool.black]
-line-length = 120
-target-version = ["py36", "py37", "py38"]
-extend-exclude = "robosuite/((models/assets)|(controllers/config))"
+[project]
+name = "robosuite"
+requires-python = ">=3.8.15"
+dynamic = ["version", "dependencies", "authors", "readme"]
 
-[tool.isort]
-profile = "black"
-line_length = 120
-skip = ["__init__.py"]
-filter_files = true
-py_version = "all"
-extend_skip = [
-    "robosuite/models/assets",
-    "robosuite/controllers/config",
-]
+[build-system]
+requires = ["wheel", "setuptools", "setuptools_scm[toml]"]
+
+[tool.setuptools_scm]
+write_to = "robosuite/_version.py"
+
+[tool.setuptools.packages.find]
+include = ["robosuite"]
+
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
